@@ -1,0 +1,25 @@
+version: '3'
+services:
+  homeassistant:
+    container_name: homeassistant
+    image: homeassistant/home-assistant:latest
+    volumes:
+      - /conf/home-assistant/conf:/config
+      - /conf/home-assistant/timezone:/etc/localtime:ro
+    restart: unless-stopped
+    privileged: true
+    network_mode: host
+
+
+  homebridge:
+    container_name: homebridge
+    image: oznu/homebridge:latest
+    restart: always
+    network_mode: host
+    volumes:
+      - ./volumes/homebridge:/homebridge
+    logging:
+      driver: json-file
+      options:
+        max-size: "10mb"
+        max-file: "1"
