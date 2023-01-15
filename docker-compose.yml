@@ -1,16 +1,5 @@
 version: '3'
 services:
-  homeassistant:
-    container_name: homeassistant
-    image: homeassistant/home-assistant:latest
-    volumes:
-      - /conf/home-assistant/conf:/config
-      - /conf/home-assistant/timezone:/etc/localtime:ro
-    restart: unless-stopped
-    privileged: true
-    network_mode: host
-
-
   homebridge:
     container_name: homebridge
     image: oznu/homebridge:latest
